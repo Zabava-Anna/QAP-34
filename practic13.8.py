@@ -12,5 +12,5 @@ for i in list:
     elif a >= 25:
         Sum += 1390
 if text >= 3:
-    Sum = Sum / 100 * 90
+    Sum -= Sum * 0.1
 print("Сумма = ", Sum, "рублей")
