@@ -7,13 +7,11 @@
 
 def checknum(ent):
     for n in ent:
-        if n in alph:
-            return f'Введите только числа'
-        elif n in sym:
-            return f'Введите только числа'
-        else:
+        if n.isdigit():
             spisok.append(int(n))
-    return spisok
+        else:
+            print(f'"{n}" не является числом')
+    return f"Принятые числа {spisok}"
 
 
 def merge_sort(L):
@@ -55,7 +53,13 @@ def binary_search(array, element, left, right):
 
     middle = (right + left) // 2
     if array[middle] == element:
-        return middle - 1,  middle + 1
+        if len(array) == 1:
+            return f'Элемент {number} является единственным'
+        elif array[middle] == array[0]:
+            return f'Элемент {number} является первым, индекс следующего элемента {middle + 1}'
+        elif array[middle] == array[-1]:
+            return f'Элемент {number} является последним, индекс предыдущего элемента {middle - 1}'
+        return f'Для элемента {number}, индекс предыдущего элемента {middle - 1}, индекс следующего элемента {middle + 1} '
     elif element < array[middle]:
         return binary_search(array, element, left, middle - 1)
     else:
@@ -63,12 +67,10 @@ def binary_search(array, element, left, right):
 
 
 spisok = []
-alph = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
-sym = "!@#$%^&*(\_-)+=:;|/?.,><[{]}`~§±"
 ent = input("Введите числа через пробел \n").split()
 print(checknum(ent))
 number = int(input("Введите любое число \n"))
 spisok.append(number)
 spisok_sort = merge_sort(spisok)
-print(spisok_sort)
+print(f"Упорядоченный список {spisok_sort}")
 print(binary_search(spisok_sort, number, 0, len(spisok_sort)))
